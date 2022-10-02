@@ -15,3 +15,17 @@
 Запускать через команду: 
 
 `python ФТ-210007Бельский.py`
+
+# Тесты
+
+- 1 Тест
+
+![Image alt](https://github.com/retxrika/Taxi/blob/master/images/1_1.png)
+
+![Image alt](https://github.com/retxrika/Taxi/blob/master/images/1_2.png)
+
+- 2 Тест
+
+![Image alt](https://github.com/retxrika/Taxi/blob/master/images/2_1.png)
+
+![Image alt](https://github.com/retxrika/Taxi/blob/master/images/2_2.png)
