@@ -6,32 +6,28 @@ class NumToStrWithRubs():
     def __str__(self):
         return self.num
 
-    def _get_num_before_twenty(self, digit):
-        return [ "", "один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять", "десять",
-                "одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать",
-                "семнадцать", "восемнадцать", "девятнадцать" ][digit]
+    numsBeforeTwenty = [ "", "один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять", 
+                        "десять", "одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", 
+                        "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать" ]
 
-    def _get_num_after_twenty(self, firstDigit):
-        return [ "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят",
-                "восемьдесят", "девяносто"][firstDigit]
+    dozens = ["двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят", 
+            "девяносто"]
 
-    def _get_hundreds(self, firstDigit):
-        return [ "сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот",
-                "девятьсот"][firstDigit]
+    hundreds = [ "сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот",
+                "девятьсот"]
 
     def _parse_three_digit(self, num): 
         self._parse_two_digit(num)
         num //= 100
-        self.numStr.append(self._get_hundreds(num % 10))
+        self.numStr.append(self.hundreds[num % 10 - 1])
 
     def _parse_two_digit(self, num):
-        if (num % 100 >= 20):
-            self.numStr.append(self._get_num_before_twenty(num % 10))
-            num //= 10
-            self.numStr.append(self._get_num_after_twenty(num % 10))
-            num //= 10
+        if (num % 100 < 20):
+            self.numStr.append(self.numsBeforeTwenty[num % 100])
         else:
-            self.numStr.append(self._get_num_before_twenty(num % 100))
+            self.numStr.append(self.numsBeforeTwenty[num % 10])
+            num //= 10
+            self.numStr.append(self.dozens[num % 10 - 2])
 
     def _get_thousand_with_correct_end(self, lastTwoDigit):
         if lastTwoDigit > 20:
@@ -95,5 +91,6 @@ class NumToStrWithRubs():
         # Замена при необходимости падежа у окончания тысячи.
         if isChangeCase:
             self._change_case(self.numStr)
-
+        
+        self.numStr = list(filter(None, self.numStr))
         return ' '.join(self.numStr).capitalize()

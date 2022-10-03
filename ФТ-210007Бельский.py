@@ -18,8 +18,11 @@ def print_table(taxis):
     os.system('cls')
     print(table)
 
-def print_sum(sum):
-    print(f'\nОбщая сумма, которую необходимо заплатить за просчитанный вариант: {NumToStrWithRubs(sum)}')
+def print_sum_nums(sum):
+    print(f'\nОбщая сумма, которую необходимо заплатить за просчитанный вариант (цифрами): {sum}')
+
+def print_sum_words(sum):
+    print(f'\nОбщая сумма, которую необходимо заплатить за просчитанный вариант (словами): {NumToStrWithRubs(sum)}')
     
 def input_num(msg):
     while True:
@@ -63,6 +66,7 @@ fill_data(distances, tariffs)
 
 sum, taxis = get_sum_and_nums_taxis(distances, tariffs)
 
-print_table(taxis)
-print_sum(sum)
+print_table(taxis) 
+print_sum_nums(sum)
+print_sum_words(sum)
 
